@@ -1,56 +1,56 @@
 // typography
+/* roboto-regular - latin */
+@font-face {
+  @include local-font(
+    $secondary-font-family,
+    $fonts-secondary-url,
+    $fonts-local-secondary-urls,
+    400
+  );
+}
 
-.heading-1 {
+// roboto-500 - latin
+@font-face {
+  @include local-font(
+    $secondary-font-family,
+    $fonts-secondary-url,
+    $fonts-local-secondary-500-urls,
+    500
+  );
+}
+
+// domine-600 - latin
+@font-face {
+  @include local-font($primary-font-family, $fonts-primary-url, $fonts-local-primary-600-urls, 600);
+}
+
+body {
+  font-family: $secondary-font;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: $primary-font;
-  color: $black;
-
-  &--white {
-    color: $white;
-  }
 }
 
-.heading-2 {
-  font-family: $secondary-font;
-  color: $black;
-
-  &--white {
-    color: $white;
-  }
-
-  &--light {
-    font-weight: 400;
-  }
-
-  &--med {
-    font-weight: 600;
-  }
-
-  &--bold {
-    font-weight: 800;
-  }
-  &--white {
-    color: $white;
-  }
+h1 {
+  font-size: 66px;
 }
 
-// other text
-.body-text {
-  font-family: $secondary-font;
-  color: $light-gray;
+h2 {
+  font-size: 35px;
+}
 
-  &--light {
-    font-weight: 400;
-  }
+h3 {
+  font-size: 23px;
+}
 
-  &--med {
-    font-weight: 600;
-  }
-
-  &--bold {
-    font-weight: 800;
-  }
-
-  &--black {
-    color: $black;
-  }
+h4 {
+  font-size: 25px;
 }

@@ -1,10 +1,27 @@
-// <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Oswald:wght@300;400;600&family=Pacifico&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-
-// <link href="https://fonts.googleapis.com/css?family=Chewy|Nunito:400,400i,600,700,800" rel="stylesheet">
-
 // fonts
-$primary-font: 'Chewy', cursive; // 400,400i,600,700,800
-$secondary-font: 'Nunito', sans-serif; // 400,400i,600,700,800
+$primary-font-family: 'Domine';
+$secondary-font-family: 'Roboto';
+
+$primary-font: $primary-font-family, serif; // 600
+$secondary-font: $secondary-font-family, sans-serif; // 400, 500
+
+// roboto-regular - latin
+$fonts-secondary-url: '../fonts/roboto-v20-latin-regular.eot';
+$fonts-local-secondary-urls: '../fonts/roboto-v20-latin-regular.eot?#iefix',
+  '../fonts/roboto-v20-latin-regular.woff2', '../fonts/roboto-v20-latin-regular.woff',
+  '../fonts/roboto-v20-latin-regular.ttf';
+
+// roboto-500 - latin
+$fonts-secondary-500-url: '../fonts/roboto-v20-latin-500.eot';
+$fonts-local-secondary-500-urls: '../fonts/roboto-v20-latin-500.eot?#iefix',
+  '../fonts/roboto-v20-latin-500.woff2', '../fonts/roboto-v20-latin-500.woff',
+  '../fonts/roboto-v20-latin-500.ttf';
+
+// domine-600 - latin
+$fonts-primary-url: '../fonts/domine-v10-latin-600.eot';
+$fonts-local-primary-600-urls: '../fonts/domine-v10-latin-600.eot?#iefix',
+  '../fonts/domine-v10-latin-600.woff2', '../fonts/domine-v10-latin-600.woff',
+  '../fonts/domine-v10-latin-600.ttf';
 
 // colors
 $primary-color: #fe919e;

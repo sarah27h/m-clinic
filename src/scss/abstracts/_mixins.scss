@@ -1,14 +1,36 @@
-@mixin respond($breakpoint) { 
-	@if $breakpoint == phone { 
-		@media only screen and (max-width: 37.5em){@content}; // 600px 
-	} 
-	@if $breakpoint == tab-port { 
-        @media only screen and (max-width: 56.25em){@content}; // 900px 
-    } 
-	@if $breakpoint == tab-land { 
-        @media only screen and (max-width: 75em){@content}; // 1200px 
-    } 
-	@if $breakpoint == big-desktop { 
-        @media only screen and (min-width: 112.5em){@content}; // 1800px 
-    } 
-} 
+@mixin respond($breakpoint) {
+  @if $breakpoint == phone {
+    @media only screen and (max-width: 37.5em) {
+      @content;
+    } // 600px
+  }
+  @if $breakpoint == tab-port {
+    @media only screen and (max-width: 56.25em) {
+      @content;
+    } // 900px
+  }
+  @if $breakpoint == tab-land {
+    @media only screen and (max-width: 75em) {
+      @content;
+    } // 1200px
+  }
+  @if $breakpoint == big-desktop {
+    @media only screen and (min-width: 112.5em) {
+      @content;
+    } // 1800px
+  }
+}
+
+@mixin local-font($font, $fonts-url, $fonts-local-urls, $font-weight) {
+  @each $url in $fonts-local-urls {
+    font-family: $font;
+    src: url($fonts-url); /* IE9 Compat Modes */
+    src: local(''), url($url) format('embedded-opentype'), /* IE6-IE8 */ url($url) format('woff2'),
+      /* Super Modern Browsers */ url($url) format('woff'),
+      /* Modern Browsers */ url($url) format('truetype'); /* Safari, Android, iOS */
+    font-style: normal;
+    font-weight: $font-weight;
+    // instructs browser to use the fallback to display the text until custom font is downloaded
+    font-display: swap;
+  }
+}
