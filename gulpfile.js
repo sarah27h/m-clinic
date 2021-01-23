@@ -37,6 +37,7 @@ const srcFiles = {
   imagesPath: 'src/images/**/*',
   indexPath: './index.html',
   webFontsPath: './node_modules/@fortawesome/fontawesome-free/webfonts/*',
+  fontsPath: './fonts/**',
 };
 
 const distFiles = {
@@ -46,6 +47,7 @@ const distFiles = {
   distCSSPath: 'dist/css',
   distJSPath: 'dist/js',
   distWebfonts: 'dist/webfonts',
+  distFontsPath: 'dist/fonts',
 };
 
 // flag to Gulp to run different tasks for prod, dev
@@ -68,6 +70,15 @@ async function copyfontawesomeWebfontsTask() {
   return gulpif(
     fileExists.sync(fontawesomeWebfont),
     src([srcFiles.webFontsPath]).pipe(dest(distFiles.distWebfonts))
+  );
+}
+
+// copy fonts if exist
+const localFonts = srcFiles.fonts;
+async function copyFontsTask() {
+  return gulpif(
+    fileExists.sync(localFonts),
+    src([srcFiles.fontsPath]).pipe(dest(distFiles.distFontsPath))
   );
 }
 
@@ -232,7 +243,8 @@ exports.default = series(
     initIndexHtml,
     copyHTMLTask,
     copyImagesTask,
-    copyfontawesomeWebfontsTask
+    copyfontawesomeWebfontsTask,
+    copyFontsTask
   ),
   cacheBustTask,
   parallel(serveTask, watchTask)
@@ -249,6 +261,7 @@ exports.build = series(
     templatePagesTask,
     copyHTMLTask,
     copyImagesTask,
-    copyfontawesomeWebfontsTask
+    copyfontawesomeWebfontsTask,
+    copyFontsTask
   )
 );
