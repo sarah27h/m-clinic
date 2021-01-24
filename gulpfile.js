@@ -37,7 +37,7 @@ const srcFiles = {
   imagesPath: 'src/images/**/*',
   indexPath: './index.html',
   webFontsPath: './node_modules/@fortawesome/fontawesome-free/webfonts/*',
-  fontsPath: './fonts/**',
+  fontsPath: 'src/fonts/**',
 };
 
 const distFiles = {

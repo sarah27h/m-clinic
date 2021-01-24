@@ -20,17 +20,3 @@
     } // 1800px
   }
 }
-
-@mixin local-font($font, $fonts-url, $fonts-local-urls, $font-weight) {
-  @each $url in $fonts-local-urls {
-    font-family: $font;
-    src: url($fonts-url); /* IE9 Compat Modes */
-    src: local(''), url($url) format('embedded-opentype'), /* IE6-IE8 */ url($url) format('woff2'),
-      /* Super Modern Browsers */ url($url) format('woff'),
-      /* Modern Browsers */ url($url) format('truetype'); /* Safari, Android, iOS */
-    font-style: normal;
-    font-weight: $font-weight;
-    // instructs browser to use the fallback to display the text until custom font is downloaded
-    font-display: swap;
-  }
-}

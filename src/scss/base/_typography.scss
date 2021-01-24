@@ -1,33 +1,54 @@
 // typography
+
+/* domine-600 - latin */
+@font-face {
+  font-family: $primary-font-family;
+  src: url('../../../fonts/domine-v10-latin-600.eot'); /* IE9 Compat Modes */
+  src: url('../../../fonts/domine-v10-latin-600.eot?#iefix') format('embedded-opentype'),
+    /* IE6-IE8 */ url('../../../fonts/domine-v10-latin-600.woff2') format('woff2'),
+    /* Super Modern Browsers */ url('../../../fonts/domine-v10-latin-600.woff') format('woff'),
+    /* Modern Browsers */ url('../../../fonts/domine-v10-latin-600.ttf') format('truetype'); /* Safari, Android, iOS */
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+}
+
 /* roboto-regular - latin */
 @font-face {
-  @include local-font(
-    $secondary-font-family,
-    $fonts-secondary-url,
-    $fonts-local-secondary-urls,
-    400
-  );
+  font-family: $secondary-font-family;
+  src: url('../../../fonts/roboto-v20-latin-regular.eot'); /* IE9 Compat Modes */
+  src: url('../../../fonts/roboto-v20-latin-regular.eot?#iefix') format('embedded-opentype'),
+    /* IE6-IE8 */ url('../../../fonts/roboto-v20-latin-regular.woff2') format('woff2'),
+    /* Super Modern Browsers */ url('../../../fonts/roboto-v20-latin-regular.woff') format('woff'),
+    /* Modern Browsers */ url('../../../fonts/roboto-v20-latin-regular.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
 }
 
-// roboto-500 - latin
+/* roboto-500 - latin */
 @font-face {
-  @include local-font(
-    $secondary-font-family,
-    $fonts-secondary-url,
-    $fonts-local-secondary-500-urls,
-    500
-  );
-}
-
-// domine-600 - latin
-@font-face {
-  @include local-font($primary-font-family, $fonts-primary-url, $fonts-local-primary-600-urls, 600);
+  font-family: $secondary-font-family;
+  src: url('../../../fonts/roboto-v20-latin-500.eot'); /* IE9 Compat Modes */
+  src: url('../../../fonts/roboto-v20-latin-500.eot?#iefix') format('embedded-opentype'),
+    /* IE6-IE8 */ url('../../../fonts/roboto-v20-latin-500.woff2') format('woff2'),
+    /* Super Modern Browsers */ url('../../../fonts/roboto-v20-latin-500.woff') format('woff'),
+    /* Modern Browsers */ url('../../../fonts/roboto-v20-latin-500.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
 }
 
 body {
   font-family: $secondary-font;
-  font-weight: 400;
   font-size: 16px;
+  font-weight: 400;
+}
+
+p {
+  font-family: $secondary-font;
+  font-size: 16px;
+  font-weight: 500;
 }
 
 h1,
