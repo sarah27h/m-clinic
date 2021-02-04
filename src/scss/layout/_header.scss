@@ -1,0 +1,59 @@
+.header {
+  grid-column: center-start / center-end;
+  //   background: url('../../images/header/bg-header.jpg');
+
+  display: grid;
+  grid-template-columns: repeat(2, minmax(min-content, 1fr));
+  align-items: center;
+
+  height: $navbar-height;
+  background-color: $white;
+
+  @include respond(tab-land) {
+    width: 100%;
+    position: fixed;
+    z-index: 1000000;
+    top: 0;
+    left: 0;
+  }
+
+  &__logo {
+    font-size: 2.5rem;
+
+    a {
+      text-decoration: none;
+      font-weight: 600;
+      color: $gray-900;
+    }
+
+    i {
+      color: $main-color;
+    }
+  }
+
+  &__contact {
+    display: flex;
+    align-items: flex-end;
+    margin-left: auto;
+    color: $gray-900;
+  }
+
+  &__contact-info {
+    text-transform: uppercase;
+    p {
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+
+    p:last-of-type {
+      font-size: 3rem;
+      letter-spacing: 0.1rem;
+      color: $primary-color;
+    }
+  }
+
+  &__contact-icon {
+    font-size: 4.5rem;
+    margin-right: 1rem;
+  }
+}
