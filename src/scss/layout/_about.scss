@@ -1,0 +1,17 @@
+.about {
+  grid-column: center-start / center-end;
+  padding: 0 6rem;
+
+  &__heading {
+    margin-bottom: 4rem;
+    text-transform: capitalize;
+    text-align: center;
+    color: $gray-900;
+  }
+
+  &__heading-sub {
+    margin-bottom: 8rem;
+    color: $gray-700;
+    line-height: 2;
+  }
+}
