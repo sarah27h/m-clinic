@@ -23,16 +23,21 @@ html {
 }
 
 body {
+  background-color: $white;
   box-sizing: border-box;
+
+  @include respond(tab-land) {
+    padding-top: $navbar-height;
+  }
 }
 
 .grid {
   display: grid;
   grid-template-columns:
-    [full-start] minmax(6rem, 1fr) [center-start] repeat(2, minmax(min-content, 60rem))
-    [center-end] minmax(6rem, 1fr) [full-end];
-  grid-template-rows: 100vh min-content;
-  row-gap: 2rem;
+    [full-start] minmax(13.6rem, 1fr) [center-start] repeat(2, minmax(min-content, 56.4rem))
+    [center-end] minmax(13.6rem, 1fr) [full-end];
+  // grid-template-rows: 100vh min-content;
+  // row-gap: 2rem;
 
   ::selection {
     color: $white;
@@ -43,4 +48,61 @@ body {
     color: $white;
     background: $primary-color;
   }
+}
+
+// placeholder
+::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+  /* WebKit, Blink, Edge */
+  color: $gray-900;
+}
+:-moz-placeholder,
+textarea:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: $gray-900;
+  opacity: 1;
+}
+::-moz-placeholder,
+textarea::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: $gray-900;
+  opacity: 1;
+}
+:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: $gray-900;
+}
+::-ms-input-placeholder,
+textarea::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: $gray-900;
+}
+
+::placeholder,
+textarea::placeholder {
+  /* Most modern browsers support this now. */
+  color: $gray-900;
+}
+
+input[type='date']::before {
+  content: attr(data-placeholder) !important;
+  width: 100%;
+  color: $gray-900;
+}
+
+/* hide our custom/fake placeholder text when in focus to show the default
+ * 'mm/dd/yyyy' value and when valid to show the users' date of birth value.
+ */
+input[type='date']:focus::before,
+input[type='date']:valid::before {
+  content: '';
+}
+
+.show {
+  display: block;
+}
+
+.hide {
+  display: none !important;
 }

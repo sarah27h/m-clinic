@@ -1,12 +1,12 @@
 .btn {
-  border-radius: 1.2rem;
   border: none;
-  padding: 15px 20px;
-  background-color: $light-gray;
-  border-color: $dark-gray;
+  padding: 1.5rem 1rem;
+
   font-family: $secondary-font;
+  font-size: 1.5rem;
   text-transform: uppercase;
-  box-shadow: 0m.5rem 1rem rgba($black, 0.3);
+  font-weight: 600;
+  letter-spacing: 0.15rem;
   transition: all 0.2s;
 
   &:hover {
@@ -16,13 +16,53 @@
   }
 
   &-main {
-    background: $primary-color;
+    background: $main-color;
+    border: 1px solid $main-color;
     color: $white;
 
     &:hover {
       cursor: pointer;
       transform: translate(-0.3rem);
-      background: $secondary-color;
+      background: $main-200;
     }
+  }
+
+  &-secondary {
+    background: $secondary-color;
+    border: 1px solid $secondary-color;
+    color: $black;
+
+    &:hover {
+      cursor: pointer;
+      transform: translate(-0.3rem);
+      background: $secondary-200;
+    }
+  }
+
+  &-primary {
+    background: $primary-color;
+    border: 1px solid $primary-color;
+    color: $white;
+
+    &:hover {
+      cursor: pointer;
+      transform: translate(-0.3rem);
+      background: $primary-200;
+    }
+  }
+
+  &-block {
+    width: 100%;
+  }
+
+  &-small {
+    height: 5rem;
+    border-radius: 1.2rem;
+  }
+
+  &-lg {
+    height: 7rem;
+    min-width: 250px;
+    border-radius: 0.5rem;
   }
 }

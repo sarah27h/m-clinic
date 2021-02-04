@@ -1,3 +1,6 @@
+// general
+$navbar-height: 10rem;
+
 // fonts
 $primary-font-family: Domine;
 $secondary-font-family: Roboto;
@@ -6,11 +9,25 @@ $primary-font: $primary-font-family, serif; // 600
 $secondary-font: $secondary-font-family, sans-serif; // 400, 500
 
 // colors
-$primary-color: #fe919e;
-$secondary-color: #ff5599;
+$black: #333;
+$white: #fff;
+$primary-color: #0c9ddd;
+$primary-200: #599dba;
+$secondary-color: $white;
+$secondary-200: #c2c2c2;
+$main-color: #514b85;
+$main-200: #2b2847;
 $dark-gray: #717171;
 $light-gray: #757575;
 $light-white: #fff8f8;
 
-$black: #333;
-$white: #fff;
+$gray-100: #f7fafc;
+$gray-200: #edf2f7;
+$gray-300: #e2e8f0;
+$gray-400: #cbd5e0;
+$gray-500: #a0aec0;
+$gray-600: #718096;
+
+$gray-700: #4a5568;
+$gray-800: #2d3748;
+$gray-900: #424241;
