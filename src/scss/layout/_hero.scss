@@ -1,0 +1,54 @@
+.hero {
+  grid-column: full-start / full-end;
+
+  background: linear-gradient(rgba(18, 8, 98, 0.95), rgba(0, 0, 0, 0.5)),
+    url(../../images/hero/hero__img.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+  display: grid;
+  grid-template-columns: repeat(5, minmax(min-content, 1fr));
+  grid-template-rows: 40rem;
+  align-items: center;
+
+  position: relative;
+  padding: 6rem 0;
+  text-transform: capitalize;
+
+  &__heading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: $white;
+  }
+
+  &__logo {
+    display: block;
+    padding: 10px 0;
+    color: $main-color;
+    border-bottom: 1px solid #e8e8e8;
+
+    &:before {
+      border-radius: 100% 100% 0 0;
+      border: 1px solid #e8e8e8;
+      padding: 1rem;
+      background: #e8e8e8;
+    }
+  }
+
+  &__heading-sup {
+    padding: 1rem;
+    background: $primary-color;
+    font-size: 20px;
+    letter-spacing: 0.15rem;
+    font-weight: 400;
+  }
+
+  &__content {
+    grid-column: 2/5;
+    justify-self: center;
+  }
+}
