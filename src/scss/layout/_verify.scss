@@ -1,0 +1,92 @@
+.verfiy {
+  grid-column: full-start / full-end;
+
+  position: relative;
+  background: $primary-color;
+  text-align: center;
+  text-transform: capitalize;
+  color: $white;
+
+  display: grid;
+  grid-template-columns: minmax(13.6rem, 1fr) repeat(2, minmax(min-content, 56.4rem)) minmax(
+      13.6rem,
+      1fr
+    );
+
+  &:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 4px;
+    width: 0;
+    height: 0;
+    border-left: 6rem solid transparent;
+    border-right: 6rem solid transparent;
+    border-top: 2.4rem solid $white;
+    clear: both;
+    transform: translate(-50%, -50%);
+    left: 50%;
+  }
+
+  &__heading {
+    grid-column: 1/-1;
+  }
+
+  &__heading-sup {
+    grid-column: 1/-1;
+  }
+
+  &__text {
+    grid-column: 1/-1;
+  }
+
+  &__form {
+    grid-column: 2/4;
+
+    background: $gray-800;
+    padding: 3rem 5rem;
+    border-radius: 1rem;
+    border: 1px solid $gray-900;
+  }
+
+  &__call-action {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(min-content, 1fr));
+    justify-content: center;
+  }
+
+  &__form-group {
+    grid-column: 1/3;
+    display: flex;
+    flex-wrap: nowrap;
+  }
+
+  &__input {
+    // min-width: 235px;
+    height: 5rem;
+    width: 100%;
+    border: 0;
+    margin-right: 1rem;
+    margin-bottom: 1.5rem;
+    padding: 1.5rem 1rem;
+    border-radius: 0.5rem;
+    background: $primary-color;
+    border: 1px solid $white;
+  }
+
+  &__btn {
+    margin-right: 1rem;
+    border-radius: 0.5rem;
+  }
+
+  &__hint {
+    grid-column: 1/-1;
+
+    i {
+      margin-right: 12px;
+      border: 1px solid $white;
+      border-radius: 100%;
+      padding: 9px 10px;
+    }
+  }
+}
