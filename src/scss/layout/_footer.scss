@@ -1,0 +1,42 @@
+.footer {
+  grid-column: full-start / full-end;
+
+  text-transform: capitalize;
+  text-align: center;
+  color: $gray-900;
+
+  &__logos {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding-left: 36px;
+    padding-right: 36px;
+
+    img {
+      width: 11%;
+    }
+  }
+
+  &__logo {
+    text-decoration: none;
+    font-weight: 600;
+    color: $gray-900;
+
+    i {
+      color: $main-color;
+    }
+  }
+
+  &__heading {
+    color: $gray-900;
+  }
+
+  &__text {
+    line-height: 2;
+  }
+
+  &__copyright {
+    color: $gray-600;
+    border-top: 1px solid $gray-400;
+  }
+}
