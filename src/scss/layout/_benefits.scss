@@ -1,0 +1,98 @@
+.benefits {
+  grid-column: center-start / center-end;
+  display: grid;
+
+  &__heading {
+    justify-self: center;
+    color: $gray-900;
+    text-transform: capitalize;
+  }
+
+  &__heading-sup {
+    justify-self: center;
+    text-align: center;
+    line-height: 2;
+    color: $gray-700;
+  }
+
+  &__services {
+    border: 1px solid $gray-700;
+    border-radius: 10px;
+    padding: 0 4rem 0;
+  }
+
+  &__tabs {
+    // position: absolute;
+    // top: 0;
+    display: flex;
+    justify-content: center;
+    margin-top: -2rem;
+    margin-bottom: 5rem;
+  }
+
+  &__tab {
+    background: $primary-color;
+    padding: 1rem 3rem;
+    border-radius: 0.4rem;
+    text-transform: capitalize;
+    position: relative;
+    color: $white;
+    cursor: pointer;
+  }
+
+  &__wrapper {
+    border-right: 4px solid $white;
+    border-left: 4px solid $white;
+  }
+
+  &__wrapper:first-of-type {
+    margin-right: 0;
+    border-left: 14px solid $white;
+  }
+
+  &__wrapper:last-of-type {
+    margin-right: 0;
+    border-right: 14px solid $white;
+  }
+
+  &__border {
+    width: 6px;
+    height: 23px;
+    display: inline-block;
+    background: $primary-color;
+    vertical-align: sub;
+  }
+
+  &__heading-sub {
+    display: inline-block;
+    padding-left: 0.75rem;
+    text-transform: capitalize;
+    color: $gray-900;
+  }
+
+  &__text {
+    color: $gray-700;
+  }
+
+  &__service {
+    line-height: 2;
+  }
+}
+
+.active {
+  background-color: $main-color;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 46px;
+    width: 0;
+    height: 0;
+    border-left: 1.5rem solid transparent;
+    border-right: 1.5rem solid transparent;
+    border-top: 1rem solid $main-color;
+    clear: both;
+    transform: translate(-50%, -50%);
+    left: 50%;
+  }
+}
