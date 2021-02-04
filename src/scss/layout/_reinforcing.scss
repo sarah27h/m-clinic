@@ -1,0 +1,43 @@
+.reinforcing {
+  grid-column: full-start / full-end;
+
+  text-align: center;
+  text-transform: capitalize;
+  color: $white;
+  background: $primary-color;
+  position: relative;
+
+  &:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 4px;
+    width: 0;
+    height: 0;
+    border-left: 6rem solid transparent;
+    border-right: 6rem solid transparent;
+    border-top: 2.4rem solid $white;
+    clear: both;
+    transform: translate(-50%, -50%);
+    left: 50%;
+  }
+
+  &__text {
+    margin: 0 1.5rem 1rem;
+  }
+
+  &__providers {
+    display: flex;
+    justify-content: center;
+
+    img {
+      margin-right: 1.5rem;
+    }
+  }
+
+  &__verify {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
