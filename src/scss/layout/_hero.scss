@@ -25,6 +25,13 @@
     color: $white;
   }
 
+  &__heading-main {
+    @include respond(tab-land) {
+      font-size: 5.6rem;
+      line-height: 8rem;
+    }
+  }
+
   &__logo {
     display: block;
     padding: 10px 0;

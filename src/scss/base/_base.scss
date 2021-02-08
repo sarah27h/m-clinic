@@ -36,8 +36,12 @@ body {
   grid-template-columns:
     [full-start] minmax(13.6rem, 1fr) [center-start] repeat(2, minmax(min-content, 56.4rem))
     [center-end] minmax(13.6rem, 1fr) [full-end];
-  // grid-template-rows: 100vh min-content;
-  // row-gap: 2rem;
+
+  @include respond(tab-port) {
+    grid-template-columns:
+      [full-start] minmax(8.6rem, 1fr) [center-start] repeat(2, 1fr)
+      [center-end] minmax(8.6rem, 1fr) [full-end];
+  }
 
   ::selection {
     color: $white;

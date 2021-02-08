@@ -2,6 +2,12 @@
   grid-column: center-start / center-end;
   padding: 0 6rem;
 
+  @include respond(tab-port) {
+    grid-column: full-start / full-end;
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+
   &__heading {
     margin-bottom: 4rem;
     text-transform: capitalize;

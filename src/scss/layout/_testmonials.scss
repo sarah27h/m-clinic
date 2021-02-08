@@ -1,0 +1,28 @@
+.testmonials {
+  grid-column: full-start / full-end;
+  display: grid;
+
+  position: relative;
+  background: $main-color;
+
+  &:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 4px;
+    width: 0;
+    height: 0;
+    border-left: 6rem solid transparent;
+    border-right: 6rem solid transparent;
+    border-top: 2.4rem solid $white;
+    clear: both;
+    transform: translate(-50%, -50%);
+    left: 50%;
+  }
+
+  &__heading {
+    justify-self: center;
+    text-transform: capitalize;
+    color: $white;
+  }
+}

@@ -13,6 +13,20 @@
       1fr
     );
 
+  @include respond(tab-land) {
+    grid-template-columns: minmax(6.6rem, 1fr) repeat(2, minmax(min-content, 56.4rem)) minmax(
+        6.6rem,
+        1fr
+      );
+  }
+
+  @include respond(phone) {
+    grid-template-columns: minmax(2.6rem, 1fr) repeat(2, minmax(min-content, 56.4rem)) minmax(
+        2.6rem,
+        1fr
+      );
+  }
+
   &:before {
     content: '';
     position: absolute;
@@ -47,6 +61,10 @@
     padding: 3rem 5rem;
     border-radius: 1rem;
     border: 1px solid $gray-900;
+
+    @include respond(phone) {
+      padding: 3rem 2rem;
+    }
   }
 
   &__call-action {
@@ -59,6 +77,10 @@
     grid-column: 1/3;
     display: flex;
     flex-wrap: nowrap;
+
+    @include respond(phone) {
+      flex-wrap: wrap;
+    }
   }
 
   &__input {

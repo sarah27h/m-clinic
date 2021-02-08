@@ -4,6 +4,12 @@
   text-align: center;
   text-transform: capitalize;
 
+  @include respond(tab-port) {
+    grid-column: full-start / full-end;
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+
   &__eyebrow {
     color: $gray-700;
     text-transform: capitalize;
