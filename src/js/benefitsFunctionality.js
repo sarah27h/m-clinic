@@ -6,7 +6,7 @@ console.log(benefitsTab);
 console.log(benefitsService);
 
 benefitsTabs.addEventListener('click', (e) => {
-  if (e.target.nodeName.toLowerCase() === 'span') {
+  if (e.target.nodeName.toLowerCase() === 'a') {
     const clickedTab = e.target;
     Array.from(benefitsTab).forEach((benefitTab) => {
       benefitTab.classList.remove('active');

@@ -52,7 +52,12 @@
     text-transform: capitalize;
     position: relative;
     color: $white;
-    cursor: pointer;
+
+    &:hover {
+      cursor: pointer;
+      transform: translate(-0.3rem);
+      background: #599dba;
+    }
 
     @include respond(phone) {
       display: block;
@@ -127,19 +132,19 @@
     top: 46px;
     width: 0;
     height: 0;
-    border-left: 1.5rem solid transparent;
-    border-right: 1.5rem solid transparent;
+    border-left: 2.5rem solid transparent;
+    border-right: 2.5rem solid transparent;
     border-top: 1rem solid $main-color;
     clear: both;
     transform: translate(-50%, -50%);
     left: 50%;
 
     @include respond(tab-land) {
-      top: 36px;
+      top: 32px;
     }
 
     @include respond(phone) {
-      top: 52px;
+      top: 50px;
     }
   }
 }
