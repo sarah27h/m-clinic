@@ -125,6 +125,10 @@ function jsTask() {
           production,
           babel({
             presets: ['@babel/preset-env'],
+
+            targets: {
+              esmodules: true,
+            },
           })
         )
       )
