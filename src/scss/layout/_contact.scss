@@ -1,9 +1,15 @@
 .contact {
   grid-column: full-start / full-end;
 
+  display: grid;
+
   background: $primary-color;
   text-align: center;
   text-transform: capitalize;
   line-height: 1.3;
   color: $white;
+
+  &__btn {
+    justify-self: center;
+  }
 }

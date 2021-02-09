@@ -7,6 +7,10 @@
   text-transform: uppercase;
   font-weight: 600;
   letter-spacing: 0.15rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
   transition: all 0.2s;
 
   &:hover {

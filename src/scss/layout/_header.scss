@@ -50,10 +50,11 @@
       font-weight: 600;
     }
 
-    p:last-of-type {
+    a {
       font-size: 3rem;
       letter-spacing: 0.1rem;
       color: $primary-color;
+      text-decoration: none;
 
       @include respond(tab-land) {
         font-size: 2rem;
