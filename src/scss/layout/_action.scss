@@ -9,8 +9,8 @@
 
   &__content {
     display: grid;
-    grid-gap: 4rem;
-    grid-template-columns: repeat(2, minmax(min-content, 1fr));
+    // grid-gap: 4rem;
+    grid-template-columns: 3rem repeat(2, minmax(min-content, 1fr)) 3rem;
     grid-template-rows: repeat(1, minmax(min-content, 1fr));
 
     @include respond(phone) {
@@ -36,9 +36,18 @@
   }
 
   &__text {
-    color: $gray-800;
+    grid-column: 2/3;
 
-    p:last-of-type {
+    color: $gray-800;
+    position: relative;
+
+    &::after {
+      content: url('../images/action/arrow.png'); /* with class ModalCarrot ??*/
+      position: absolute;
+      right: -25px;
+    }
+
+    :last-of-type {
       margin-left: -2.2rem;
       font-weight: 600;
       font-size: 2rem;
@@ -51,11 +60,13 @@
   }
 
   &__form {
-    width: 354px;
+    grid-column: 3/4;
     justify-self: flex-end;
-    -webkit-box-shadow: -2px -1px 8px 0px rgba($black, 0.3);
-    -moz-box-shadow: -2px -1px 8px 0px rgba($black, 0.3);
-    box-shadow: -2px -1px 8px 0px rgba($black, 0.3);
+
+    width: 354px;
+    // -webkit-box-shadow: -2px -1px 8px 0px rgba($black, 0.3);
+    // -moz-box-shadow: -2px -1px 8px 0px rgba($black, 0.3);
+    // box-shadow: -2px -1px 8px 0px rgba($black, 0.3);
 
     @include respond(tab-land) {
       width: 300px;
