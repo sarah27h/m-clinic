@@ -14,6 +14,12 @@ const browserSync = require('browser-sync').create();
 const uglify = require('gulp-uglify');
 // support JS for old browsers
 const babel = require('gulp-babel');
+
+const browserify = require('browserify');
+const babelify = require('babelify');
+const source = require('vinyl-source-stream');
+const buffer = require('vinyl-buffer');
+
 // concate CSS, JS
 const concat = require('gulp-concat');
 // create source map files to CSS and JS
@@ -28,11 +34,18 @@ const imagemin = require('gulp-imagemin');
 const imageminPngquant = require('imagemin-pngquant');
 const fileExists = require('file-exists');
 
+// define entry for browserify
+const jsSrc = 'module.js';
+const jsFolder = 'src/js/';
+// we can add a script for front-end and scripts for back-end and so on
+const jsFiles = [jsSrc];
+
 const srcFiles = {
   mainScssPath: 'src/scss/**/mainStyle.scss',
   scssPagesPath: 'src/scss/pagesStyles/**/*.scss',
   scssPath: 'src/scss/**/*.scss',
   jsPath: 'src/js/**/*.js',
+  jsFiles: 'src/js/',
   htmlPath: 'src/pages/**/*.html',
   imagesPath: 'src/images/**/*',
   indexPath: './index.html',
@@ -49,6 +62,12 @@ const distFiles = {
   distWebfonts: 'dist/webfonts',
   distFontsPath: 'dist/fonts',
 };
+
+// note:
+// use async in gulp tasks
+// task might contain asynchronous code
+// you have to signal gulp
+// when your task has finished executing (= "async completion")
 
 // flag to Gulp to run different tasks for prod, dev
 const argv = require('yargs').argv;
@@ -114,30 +133,26 @@ function scssTask() {
   );
 }
 
-function jsTask() {
-  return (
-    src([srcFiles.jsPath])
-      // To load existing source maps
-      // This will cause sourceMaps to use the previous sourcemap to create an ultimate sourcemap
-      .pipe(gulpif(!production, sourcemaps.init({ loadMaps: true })))
-      .pipe(
-        gulpif(
-          production,
-          babel({
-            presets: ['@babel/preset-env'],
-
-            targets: {
-              esmodules: true,
-            },
-          })
-        )
-      )
-      .pipe(concat('all.js'))
-      .pipe(gulpif(production, rename({ extname: '.min.js' })))
-      .pipe(gulpif(production, uglify()))
-      .pipe(gulpif(!production, sourcemaps.write('./')))
-      .pipe(dest(distFiles.distJSPath))
-  );
+async function jsTask() {
+  jsFiles.map(function (entry) {
+    return (
+      browserify({
+        entries: [jsFolder + entry],
+      })
+        .transform(babelify, { presets: ['@babel/preset-env'] })
+        .bundle()
+        .pipe(source('all.js'))
+        // To load existing source maps
+        // This will cause sourceMaps to use the previous sourcemap to create an ultimate sourcemap
+        .pipe(gulpif(production, rename({ extname: '.min.js' })))
+        .pipe(buffer())
+        .pipe(gulpif(!production, sourcemaps.init({ loadMaps: true })))
+        // .pipe(concat('all.js'))
+        .pipe(gulpif(production, uglify()))
+        .pipe(gulpif(!production, sourcemaps.write('./')))
+        .pipe(dest(distFiles.distJSPath))
+    );
+  });
 }
 
 // optimize images
