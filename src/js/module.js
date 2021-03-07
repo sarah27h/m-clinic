@@ -1,4 +1,5 @@
-import '../../node_modules/tiny-slider/dist/tiny-slider.helper.ie8.js';
-import '../../node_modules/tiny-slider/dist/tiny-slider/dist/tiny-slider.js';
+import './benefitsFunctionality';
+import './testmonialsSlider';
+import './copyrightDate';
 
 console.log('in module');
