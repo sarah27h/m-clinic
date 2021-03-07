@@ -1,29 +1,88 @@
 .testmonials {
   grid-column: full-start / full-end;
-  display: grid;
 
   position: relative;
+  padding-left: 5rem;
+  padding-right: 5rem;
   background: $main-color;
 
   &:before {
-    content: '';
+    content: url('../../images/curve.svg');
     position: absolute;
-    top: 4px;
-    width: 0;
-    height: 0;
-    border-left: 6rem solid transparent;
-    border-right: 6rem solid transparent;
-    border-top: 2.4rem solid $white;
-    clear: both;
+    top: 1px;
     transform: translate(-50%, -50%);
     left: 50%;
-    // clip-path: polygon(100% 50%, 50% 100%, 0% 50%);
-    // background: #fff;
   }
 
   &__heading {
-    justify-self: center;
+    text-align: center;
     text-transform: capitalize;
     color: $white;
+  }
+
+  &__content {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    padding: 3rem;
+    border-radius: 0.5rem;
+    position: relative;
+    min-height: 280px;
+
+    &::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 0;
+      border-left: 2rem solid transparent;
+      border-right: 2rem solid transparent;
+      border-top: 3rem solid #fff;
+      clear: both;
+      bottom: -14px;
+      left: 35px;
+    }
+  }
+
+  &__alumini {
+    display: flex;
+    margin-top: 4rem;
+  }
+
+  &__avatar {
+    width: 60px;
+    margin-right: 1.5rem;
+    margin-left: 2.5rem;
+  }
+
+  &__data {
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+    justify-content: center;
+
+    h4 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      color: $gray-300;
+      letter-spacing: 0.1rem;
+    }
+  }
+
+  &__text {
+    font-size: 1.8rem;
+    line-height: 2;
+    font-weight: 600;
+    color: $gray-700;
+  }
+
+  &__icons {
+    display: flex;
+    justify-content: space-between;
+    padding: 2rem 0;
+    color: $white;
+    font-size: 1.4rem;
   }
 }

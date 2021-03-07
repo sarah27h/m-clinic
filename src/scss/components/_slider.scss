@@ -1,0 +1,22 @@
+.tns-nav {
+  text-align: center;
+  margin-top: 7rem;
+
+  & > [aria-controls] {
+    width: 18px;
+    height: 18px;
+    padding: 0;
+    margin: 0 5px;
+    border-radius: 50%;
+    background: transparent;
+    border: 1px solid $white;
+  }
+
+  & > [aria-controls]:hover {
+    background: $white;
+  }
+
+  & > .tns-nav-active {
+    background: $white;
+  }
+}
