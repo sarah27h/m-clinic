@@ -10,20 +10,18 @@
   color: $white;
   position: relative;
 
+  // img {
+  //   position: absolute;
+  //   left: 50%;
+  //   transform: translate(-50%, -50%);
+  // }
+
   &::before {
-    content: '';
+    content: url('../../images/curve.svg');
     position: absolute;
-    top: 4px;
-    width: 0;
-    height: 0;
-    border-left: 6rem solid transparent;
-    border-right: 6rem solid transparent;
-    border-top: 2.4rem solid $white;
-    clear: both;
+    top: 1px;
     transform: translate(-50%, -50%);
     left: 50%;
-    // clip-path: polygon(100% 50%, 50% 100%, 0% 50%);
-    // background: #fff;
   }
 
   &__btn {
