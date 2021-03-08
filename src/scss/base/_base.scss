@@ -10,14 +10,17 @@ html {
   scroll-behavior: smooth !important;
   font-size: 62.5%;
 
+  // 1200px
   @include respond(tab-land) {
     font-size: 56.25%;
   }
 
+  // 900px
   @include respond(tab-port) {
     font-size: 50%;
   }
 
+  // 1800px
   @include respond(big-desktop) {
     font-size: 75%;
   }

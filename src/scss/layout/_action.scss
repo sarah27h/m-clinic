@@ -33,6 +33,10 @@
     @include respond(tab-land) {
       padding-left: 1rem;
     }
+
+    @include respond(phone) {
+      text-align: center;
+    }
   }
 
   &__text {

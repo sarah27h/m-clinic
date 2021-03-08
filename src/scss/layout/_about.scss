@@ -19,5 +19,9 @@
     margin-bottom: 8rem;
     color: $gray-700;
     line-height: 2;
+
+    @include respond(phone) {
+      text-align: center;
+    }
   }
 }
