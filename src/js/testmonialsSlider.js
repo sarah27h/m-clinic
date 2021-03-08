@@ -22,4 +22,5 @@ const slider = tns({
   controls: false,
   navPosition: 'bottom',
   mouseDrag: true,
+  autoplayButtonOutput: false,
 });
