@@ -32,6 +32,9 @@ const del = require('del');
 // compress images
 const imagemin = require('gulp-imagemin');
 const imageminPngquant = require('imagemin-pngquant');
+// create responsive images
+const responsive = require('gulp-responsive');
+
 const fileExists = require('file-exists');
 
 // define entry for browserify
@@ -168,6 +171,43 @@ function images() {
         }),
       ])
     )
+    .pipe(
+      responsive(
+        {
+          '**/*': [
+            {
+              width: 250,
+              rename: {
+                suffix: '-small',
+                extname: '.webp',
+              },
+              // Do not enlarge the output image if the input image are already less than the required dimensions.
+              skipOnEnlargement: true,
+            },
+            {
+              width: 350,
+              rename: {
+                suffix: '-medium',
+                extname: '.webp',
+              },
+              // Do not enlarge the output image if the input image are already less than the required dimensions.
+              skipOnEnlargement: true,
+            },
+          ],
+        },
+        {
+          // Global configuration for all images
+          // The output quality for JPEG, WebP and TIFF output formats
+          quality: 80,
+          // Use progressive (interlace) scan for JPEG and PNG output
+          progressive: true,
+          // Strip all metadata
+          withMetadata: false,
+          // Do not emit the error when image is enlarged.
+          errorOnEnlargement: false,
+        }
+      )
+    )
     .pipe(dest(distFiles.distImagesPath));
 }
 
@@ -272,10 +312,10 @@ exports.default = series(
 // to produce a production version
 exports.build = series(
   cleanDistForBuild,
+  images,
   parallel(
     scssTask,
     jsTask,
-    images,
     templateTask,
     templatePagesTask,
     copyHTMLTask,
