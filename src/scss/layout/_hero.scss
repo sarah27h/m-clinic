@@ -2,7 +2,8 @@
   grid-column: full-start / full-end;
 
   background: linear-gradient(rgba(18, 8, 98, 0.95), rgba(0, 0, 0, 0.5)),
-    url(../../images/hero/hero__img.jpg);
+    url(../../images/hero/hero__img-extralarge.webp);
+
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -15,6 +16,30 @@
   position: relative;
   padding: 6rem 0;
   text-transform: capitalize;
+
+  @include respond(big-desktop) {
+    background: linear-gradient(rgba(18, 8, 98, 0.95), rgba(0, 0, 0, 0.5)),
+      url(../../images/hero/hero__img.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+
+  @include respond(tab-land) {
+    background: linear-gradient(rgba(18, 8, 98, 0.95), rgba(0, 0, 0, 0.5)),
+      url(../../images/hero/hero__img-extralarge.webp);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+
+  @include respond(tab-port) {
+    background: linear-gradient(rgba(18, 8, 98, 0.95), rgba(0, 0, 0, 0.5)),
+      url(../../images/hero/hero__img-large.webp);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
 
   &__heading {
     position: absolute;
