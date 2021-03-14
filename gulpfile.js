@@ -174,7 +174,7 @@ function images() {
     .pipe(
       responsive(
         {
-          '**/*': [
+          '**/!(hero*).{jpg,png,svg}': [
             {
               width: 250,
               rename: {
@@ -188,6 +188,26 @@ function images() {
               width: 350,
               rename: {
                 suffix: '-medium',
+                extname: '.webp',
+              },
+              // Do not enlarge the output image if the input image are already less than the required dimensions.
+              skipOnEnlargement: true,
+            },
+          ],
+          '**/hero/hero__img.jpg': [
+            {
+              width: 800,
+              rename: {
+                suffix: '-large',
+                extname: '.webp',
+              },
+              // Do not enlarge the output image if the input image are already less than the required dimensions.
+              skipOnEnlargement: true,
+            },
+            {
+              width: 1423,
+              rename: {
+                suffix: '-extralarge',
                 extname: '.webp',
               },
               // Do not enlarge the output image if the input image are already less than the required dimensions.
