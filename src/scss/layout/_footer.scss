@@ -18,10 +18,7 @@
     }
 
     img {
-      width: 11%;
-
       @include respond(phone) {
-        width: 35%;
         margin-bottom: 4rem;
       }
     }
