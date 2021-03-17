@@ -40,6 +40,13 @@ const webp = require('gulp-webp');
 
 const fileExists = require('file-exists');
 
+// serve our zipped index file for local server
+const gzipStatic = require('connect-gzip-static');
+
+// compress, minify html
+const gzip = require('gulp-gzip');
+const htmlmin = require('gulp-htmlmin');
+
 // define entry for browserify
 const jsSrc = 'module.js';
 const jsFolder = 'src/js/';
@@ -110,12 +117,46 @@ async function copyFontsTask() {
 // for cachebust
 const cachebust = require('gulp-cache-bust');
 
+// copy index file in dist folder
+// replace css, js files with .min.css, .min.js extension files for production
 function initIndexHtml() {
-  return src([srcFiles.indexPath]).pipe(dest(distFiles.distPath));
+  return src([srcFiles.indexPath])
+    .pipe(gulpif(production, replace(/mainStyle.css/g, 'mainStyle.min.css')))
+    .pipe(gulpif(production, replace(/all.js/g, 'all.min.js')))
+    .pipe(htmlmin({ collapseWhitespace: true, removeComments: true }))
+    .pipe(dest(distFiles.distPath));
 }
 
+// copy html files in dist folder
+// replace css, js files with .min.css, .min.js extension files for production
 function copyHTMLTask() {
-  return src([srcFiles.htmlPath]).pipe(dest(distFiles.distPagesPath));
+  return src([srcFiles.htmlPath])
+    .pipe(gulpif(production, replace(/mainStyle.css/g, 'mainStyle.min.css')))
+    .pipe(gulpif(production, replace(/all.js/g, 'all.min.js')))
+    .pipe(htmlmin({ collapseWhitespace: true, removeComments: true }))
+    .pipe(dest(distFiles.distPagesPath));
+}
+
+// compress index file
+// replace css, js files with .min.css, .min.js extension files for production
+function compressIndex() {
+  return src([srcFiles.indexPath])
+    .pipe(gulpif(production, replace(/mainStyle.css/g, 'mainStyle.min.css')))
+    .pipe(gulpif(production, replace(/all.js/g, 'all.min.js')))
+    .pipe(htmlmin({ collapseWhitespace: true, removeComments: true }))
+    .pipe(gzip())
+    .pipe(dest(distFiles.distPath));
+}
+
+// compress html pages
+// replace css, js files with .min.css, .min.js extension files for production
+function compressHTMLTask() {
+  return src([srcFiles.htmlPath])
+    .pipe(gulpif(production, replace(/mainStyle.css/g, 'mainStyle.min.css')))
+    .pipe(gulpif(production, replace(/all.js/g, 'all.min.js')))
+    .pipe(htmlmin({ collapseWhitespace: true, removeComments: true }))
+    .pipe(gzip())
+    .pipe(dest(distFiles.distPagesPath));
 }
 
 function copyImagesTask() {
@@ -284,6 +325,16 @@ function serveTask() {
     server: {
       baseDir: './dist/',
     },
+    // middleware is too late in the stack when added via the options for .html files
+    // as serve-static ends the request prematurely thinking that the index file doesn't exist.
+    // override boolean will cause this middleware to be applied to the FRONT of the stack
+    middleware: [
+      {
+        route: '', // empty 'route' will apply this to all paths
+        handle: gzipStatic('./dist/'), // the callable
+        override: true,
+      },
+    ],
   });
 
   // done();
@@ -320,7 +371,9 @@ exports.default = series(
     scssTask,
     jsTask,
     initIndexHtml,
+    compressIndex,
     copyHTMLTask,
+    compressHTMLTask,
     copyImagesTask,
     copyfontawesomeWebfontsTask,
     copyFontsTask
@@ -342,9 +395,10 @@ exports.build = series(
   parallel(
     scssTask,
     jsTask,
-    templateTask,
-    templatePagesTask,
+    initIndexHtml,
+    compressIndex,
     copyHTMLTask,
+    compressHTMLTask,
     copyImagesTask,
     copyfontawesomeWebfontsTask,
     copyFontsTask
