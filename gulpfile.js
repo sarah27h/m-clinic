@@ -35,6 +35,9 @@ const imageminPngquant = require('imagemin-pngquant');
 // create responsive images
 const responsive = require('gulp-responsive');
 
+// to convert images to WebP
+const webp = require('gulp-webp');
+
 const fileExists = require('file-exists');
 
 // define entry for browserify
@@ -160,74 +163,71 @@ async function jsTask() {
 
 // optimize images
 function images() {
-  return src([srcFiles.imagesPath])
-    .pipe(
-      imagemin([
-        imagemin.gifsicle({ interlaced: true }),
-        imagemin.mozjpeg({ quality: 75, progressive: true }),
-        imagemin.optipng({ optimizationLevel: 5 }),
-        imagemin.svgo({
-          plugins: [imageminPngquant(), { removeViewBox: true }, { cleanupIDs: false }],
-        }),
-      ])
-    )
-    .pipe(
-      responsive(
-        {
-          '**/!(hero*).{jpg,png,svg}': [
-            {
-              width: 250,
-              rename: {
-                suffix: '-small',
-                extname: '.webp',
-              },
-              // Do not enlarge the output image if the input image are already less than the required dimensions.
-              skipOnEnlargement: true,
-            },
-            {
-              width: 350,
-              rename: {
-                suffix: '-medium',
-                extname: '.webp',
-              },
-              // Do not enlarge the output image if the input image are already less than the required dimensions.
-              skipOnEnlargement: true,
-            },
-          ],
-          '**/hero/hero__img.jpg': [
-            {
-              width: 800,
-              rename: {
-                suffix: '-large',
-                extname: '.webp',
-              },
-              // Do not enlarge the output image if the input image are already less than the required dimensions.
-              skipOnEnlargement: true,
-            },
-            {
-              width: 1423,
-              rename: {
-                suffix: '-extralarge',
-                extname: '.webp',
-              },
-              // Do not enlarge the output image if the input image are already less than the required dimensions.
-              skipOnEnlargement: true,
-            },
-          ],
-        },
-        {
-          // Global configuration for all images
-          // The output quality for JPEG, WebP and TIFF output formats
-          quality: 80,
-          // Use progressive (interlace) scan for JPEG and PNG output
-          progressive: true,
-          // Strip all metadata
-          withMetadata: false,
-          // Do not emit the error when image is enlarged.
-          errorOnEnlargement: false,
-        }
+  return (
+    src([srcFiles.imagesPath])
+      .pipe(
+        imagemin([
+          imagemin.gifsicle({ interlaced: true }),
+          imagemin.mozjpeg({ quality: 75, progressive: true }),
+          imagemin.optipng({ optimizationLevel: 5 }),
+          imagemin.svgo({
+            plugins: [imageminPngquant(), { removeViewBox: true }, { cleanupIDs: false }],
+          }),
+        ])
       )
-    )
+      // .pipe(webp({ quality: 50 }))
+      .pipe(dest(distFiles.distImagesPath))
+  );
+}
+
+// exclude images with prefix transparent
+const EXCLUDE_SRC = `!(*-tranparent)`;
+
+// resize images
+function resizeImages(from, width) {
+  const SRC = `src/images/${from}/${EXCLUDE_SRC}*.{jpg,png}`;
+  const DEST = `dist/images/${from}`;
+  return function resizeImage() {
+    return src(SRC)
+      .pipe(
+        responsive(
+          {
+            '*.{jpg,png}': [
+              {
+                width: `${width}`,
+                rename: {
+                  suffix: `-${width}`,
+                },
+                // Do not enlarge the output image if the input image are already less than the required dimensions.
+                skipOnEnlargement: true,
+              },
+            ],
+          },
+          {
+            // Global configuration for all images
+            // The output quality for JPEG, WebP and TIFF output formats
+            quality: 80,
+            // Use progressive (interlace) scan for JPEG and PNG output
+            progressive: true,
+            // Strip all metadata
+            withMetadata: false,
+            // Do not emit the error when image is enlarged.
+            errorOnEnlargement: false,
+          }
+        )
+      )
+      .pipe(dest(DEST));
+  };
+}
+
+// exclude images with prefix transparent
+const SRC = `dist/images/**/${EXCLUDE_SRC}*.{svg,png,jpg}`;
+
+// convert images to webp format
+function convert() {
+  return src(SRC)
+    .pipe(webp({ quality: 50 }))
+
     .pipe(dest(distFiles.distImagesPath));
 }
 
@@ -334,6 +334,12 @@ exports.build = series(
   cleanDistForBuild,
   images,
   parallel(
+    resizeImages('features', 250),
+    resizeImages('features', 350),
+    resizeImages('hero', 800),
+    resizeImages('hero', 1600)
+  ),
+  parallel(
     scssTask,
     jsTask,
     templateTask,
@@ -342,5 +348,6 @@ exports.build = series(
     copyImagesTask,
     copyfontawesomeWebfontsTask,
     copyFontsTask
-  )
+  ),
+  convert
 );
