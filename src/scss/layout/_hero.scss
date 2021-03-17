@@ -2,7 +2,10 @@
   grid-column: full-start / full-end;
 
   background: linear-gradient(rgba(18, 8, 98, 0.95), rgba(0, 0, 0, 0.5)),
-    url(../../images/hero/hero__img-extralarge.webp);
+    url(../../images/hero/hero__img-1600.jpg);
+
+  background: linear-gradient(rgba(18, 8, 98, 0.95), rgba(0, 0, 0, 0.5)),
+    url(../../images/hero/hero__img-1600.webp);
 
   background-repeat: no-repeat;
   background-position: center;
@@ -20,6 +23,10 @@
   @include respond(big-desktop) {
     background: linear-gradient(rgba(18, 8, 98, 0.95), rgba(0, 0, 0, 0.5)),
       url(../../images/hero/hero__img.jpg);
+
+    background: linear-gradient(rgba(18, 8, 98, 0.95), rgba(0, 0, 0, 0.5)),
+      url(../../images/hero/hero__img.webp);
+
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -27,7 +34,10 @@
 
   @include respond(tab-land) {
     background: linear-gradient(rgba(18, 8, 98, 0.95), rgba(0, 0, 0, 0.5)),
-      url(../../images/hero/hero__img-extralarge.webp);
+      url(../../images/hero/hero__img-1600.jpg);
+
+    background: linear-gradient(rgba(18, 8, 98, 0.95), rgba(0, 0, 0, 0.5)),
+      url(../../images/hero/hero__img-1600.webp);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -35,7 +45,10 @@
 
   @include respond(tab-port) {
     background: linear-gradient(rgba(18, 8, 98, 0.95), rgba(0, 0, 0, 0.5)),
-      url(../../images/hero/hero__img-large.webp);
+      url(../../images/hero/hero__img-800.jpg);
+
+    background: linear-gradient(rgba(18, 8, 98, 0.95), rgba(0, 0, 0, 0.5)),
+      url(../../images/hero/hero__img-800.webp);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
