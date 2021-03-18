@@ -123,12 +123,14 @@ const cachebust = require('gulp-cache-bust');
 // copy index file in dist folder
 // replace css, js files with .min.css, .min.js extension files for production
 function initIndexHtml() {
-  return src([srcFiles.indexPath])
-    .pipe(processhtml())
-    .pipe(gulpif(production, replace(/mainStyle.css/g, 'mainStyle.min.css')))
-    .pipe(gulpif(production, replace(/all.js/g, 'all.min.js')))
-    .pipe(htmlmin({ collapseWhitespace: true, removeComments: true }))
-    .pipe(dest(distFiles.distPath));
+  return (
+    src([srcFiles.indexPath])
+      .pipe(processhtml())
+      // .pipe(gulpif(production, replace(/mainStyle.css/g, 'mainStyle.min.css')))
+      .pipe(gulpif(production, replace(/all.js/g, 'all.min.js')))
+      .pipe(htmlmin({ collapseWhitespace: true, removeComments: true }))
+      .pipe(dest(distFiles.distPath))
+  );
 }
 
 // copy html files in dist folder
@@ -144,13 +146,15 @@ function copyHTMLTask() {
 // compress index file
 // replace css, js files with .min.css, .min.js extension files for production
 function compressIndex() {
-  return src([srcFiles.indexPath])
-    .pipe(processhtml())
-    .pipe(gulpif(production, replace(/mainStyle.css/g, 'mainStyle.min.css')))
-    .pipe(gulpif(production, replace(/all.js/g, 'all.min.js')))
-    .pipe(htmlmin({ collapseWhitespace: true, removeComments: true }))
-    .pipe(gzip())
-    .pipe(dest(distFiles.distPath));
+  return (
+    src([srcFiles.indexPath])
+      .pipe(processhtml())
+      // .pipe(gulpif(production, replace(/mainStyle.css/g, 'mainStyle.min.css')))
+      .pipe(gulpif(production, replace(/all.js/g, 'all.min.js')))
+      .pipe(htmlmin({ collapseWhitespace: true, removeComments: true }))
+      .pipe(gzip())
+      .pipe(dest(distFiles.distPath))
+  );
 }
 
 // compress html pages
