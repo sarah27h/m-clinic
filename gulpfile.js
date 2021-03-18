@@ -47,6 +47,9 @@ const gzipStatic = require('connect-gzip-static');
 const gzip = require('gulp-gzip');
 const htmlmin = require('gulp-htmlmin');
 
+// to remove timestamp
+const processhtml = require('gulp-processhtml');
+
 // define entry for browserify
 const jsSrc = 'module.js';
 const jsFolder = 'src/js/';
@@ -121,6 +124,7 @@ const cachebust = require('gulp-cache-bust');
 // replace css, js files with .min.css, .min.js extension files for production
 function initIndexHtml() {
   return src([srcFiles.indexPath])
+    .pipe(processhtml())
     .pipe(gulpif(production, replace(/mainStyle.css/g, 'mainStyle.min.css')))
     .pipe(gulpif(production, replace(/all.js/g, 'all.min.js')))
     .pipe(htmlmin({ collapseWhitespace: true, removeComments: true }))
@@ -141,6 +145,7 @@ function copyHTMLTask() {
 // replace css, js files with .min.css, .min.js extension files for production
 function compressIndex() {
   return src([srcFiles.indexPath])
+    .pipe(processhtml())
     .pipe(gulpif(production, replace(/mainStyle.css/g, 'mainStyle.min.css')))
     .pipe(gulpif(production, replace(/all.js/g, 'all.min.js')))
     .pipe(htmlmin({ collapseWhitespace: true, removeComments: true }))
@@ -204,21 +209,18 @@ async function jsTask() {
 
 // optimize images
 function images() {
-  return (
-    src([srcFiles.imagesPath])
-      .pipe(
-        imagemin([
-          imagemin.gifsicle({ interlaced: true }),
-          imagemin.mozjpeg({ quality: 75, progressive: true }),
-          imagemin.optipng({ optimizationLevel: 5 }),
-          imagemin.svgo({
-            plugins: [imageminPngquant(), { removeViewBox: true }, { cleanupIDs: false }],
-          }),
-        ])
-      )
-      // .pipe(webp({ quality: 50 }))
-      .pipe(dest(distFiles.distImagesPath))
-  );
+  return src([srcFiles.imagesPath])
+    .pipe(
+      imagemin([
+        imagemin.gifsicle({ interlaced: true }),
+        imagemin.mozjpeg({ quality: 75, progressive: true }),
+        imagemin.optipng({ optimizationLevel: 5 }),
+        imagemin.svgo({
+          plugins: [imageminPngquant(), { removeViewBox: true }, { cleanupIDs: false }],
+        }),
+      ])
+    )
+    .pipe(dest(distFiles.distImagesPath));
 }
 
 // exclude images with prefix transparent
@@ -280,22 +282,6 @@ function cleanDistForBuild() {
 // delete min files for development
 function deleteMinFiles() {
   return del([`${distFiles.distCSSPath}/*.min.css`, `${distFiles.distJSPath}/*.min.js`]);
-}
-
-// dynamically change href and src in index.html in production
-function templateTask() {
-  return src([srcFiles.indexPath])
-    .pipe(replace(/mainStyle.css/g, 'mainStyle.min.css'))
-    .pipe(replace(/all.js/g, 'all.min.js'))
-    .pipe(dest(distFiles.distPath));
-}
-
-// dynamically change href and src in web pages in production
-function templatePagesTask() {
-  return src([srcFiles.htmlPath])
-    .pipe(replace(/mainStyle.css/g, 'mainStyle.min.css'))
-    .pipe(replace(/all.js/g, 'all.min.js'))
-    .pipe(dest(distFiles.distPagesPath));
 }
 
 // Cache busting solves the browser caching issue
