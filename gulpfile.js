@@ -125,9 +125,9 @@ const cachebust = require('gulp-cache-bust');
 function initIndexHtml() {
   return (
     src([srcFiles.indexPath])
-      .pipe(processhtml())
+      .pipe(gulpif(production, processhtml()))
       // .pipe(gulpif(production, replace(/mainStyle.css/g, 'mainStyle.min.css')))
-      .pipe(gulpif(production, replace(/all.js/g, 'all.min.js')))
+      // .pipe(gulpif(production, replace(/all.js/g, 'all.min.js')))
       .pipe(htmlmin({ collapseWhitespace: true, removeComments: true }))
       .pipe(dest(distFiles.distPath))
   );
@@ -148,9 +148,9 @@ function copyHTMLTask() {
 function compressIndex() {
   return (
     src([srcFiles.indexPath])
-      .pipe(processhtml())
+      .pipe(gulpif(production, processhtml()))
       // .pipe(gulpif(production, replace(/mainStyle.css/g, 'mainStyle.min.css')))
-      .pipe(gulpif(production, replace(/all.js/g, 'all.min.js')))
+      // .pipe(gulpif(production, replace(/all.js/g, 'all.min.js')))
       .pipe(htmlmin({ collapseWhitespace: true, removeComments: true }))
       .pipe(gzip())
       .pipe(dest(distFiles.distPath))
