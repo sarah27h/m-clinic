@@ -318,13 +318,14 @@ function serveTask() {
     // middleware is too late in the stack when added via the options for .html files
     // as serve-static ends the request prematurely thinking that the index file doesn't exist.
     // override boolean will cause this middleware to be applied to the FRONT of the stack
-    middleware: [
-      {
-        route: '', // empty 'route' will apply this to all paths
-        handle: gzipStatic('./dist/'), // the callable
-        override: true,
-      },
-    ],
+    // ************* comment middleware code as it effect index reload for any changes *****************
+    // middleware: [
+    //   {
+    //     route: '', // empty 'route' will apply this to all paths
+    //     handle: gzipStatic('./dist/'), // the callable
+    //     override: true,
+    //   },
+    // ],
   });
 
   // done();
