@@ -47,7 +47,7 @@
 
   &__tab {
     background: $primary-color;
-    padding: 1rem 3rem;
+    padding: 1rem 2rem;
     border-radius: 0.4rem;
     text-transform: capitalize;
     position: relative;
@@ -56,7 +56,7 @@
     &:hover {
       cursor: pointer;
       transform: translate(-0.3rem);
-      background: #599dba;
+      background: $main-color;
     }
 
     @include respond(phone) {
@@ -148,6 +148,6 @@
   }
 
   &:hover::after {
-    border-top: 1rem solid #599dba;
+    border-top: 1rem solid $main-color;
   }
 }
