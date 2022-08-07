@@ -29,6 +29,10 @@
     position: relative;
     min-height: 280px;
 
+    @include respond(phone) {
+      min-height: 330px;
+    }
+
     &::after {
       content: '';
       position: absolute;
